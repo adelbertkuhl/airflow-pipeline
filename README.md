@@ -6,6 +6,12 @@ I've set up a basic Airflow data pipeline that runs in the Google Cloud Composer
 - Airflow executes an operation that cleans the response JSON and exports the exchange rate data for each currency to CSV files in the environment-associated GCS bucket (the `/data/` folder). 
 - The `GoogleCloudStorageToBigQueryOperator` tool loads the CSVs from the GCS bucket to their respective BigQuery tables (creating them if they don't already exist).
 
-# detailed workflow
+The Cloud Composer Airflow console shows the status of each task in the pipeline:
+![Image description](https://github.com/adelbertkuhl/airflow-pipeline/blob/master/img/Screen%20Shot%202019-10-15%20at%2011.33.12%20PM.png)
 
+We can run a simple query against one of the resulting BigQuery tables to current price data. 
+```
+select * from `airflow-pipeline-777216.airflow_pipeline_dataset.price_data_LTCUSDT` ;
+```
+![Image description](https://github.com/adelbertkuhl/airflow-pipeline/blob/master/img/Screen%20Shot%202019-10-15%20at%209.56.38%20PM.png)
 
